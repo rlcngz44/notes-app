@@ -1,4 +1,5 @@
 //** dont forget to import fs */
+const chalk = require("chalk");
 const fs = require("fs");
 
 const getNotes = function () {
@@ -65,7 +66,11 @@ const removeNote = function (title) {
   });
   //3.3 saving new array as new array
   saveNotes(notesToKeep);
-  console.log("Title removed");
+  if (notes.length > notesToKeep.length) {
+    console.log(chalk.inverse.green("Note removed!"));
+  } else {
+    console.log(chalk.inverse.red("No note found!"));
+  }
 };
 
 //2. Set up more properties to be able to export
