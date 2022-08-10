@@ -56,7 +56,16 @@ const loadNotes = function () {
 //2.2 Create a removeNote function
 const removeNote = function (title) {
   //2.4 Have removeNote log the title of the note to be removed
-  console.log("Removing: ", title);
+  // console.log("Removing: ", title);
+  //3.1 Loading existing notes
+  const notes = loadNotes();
+  //3.2 new array to filter unmatched titles
+  const notesToKeep = notes.filter(function (note) {
+    return note.title !== title;
+  });
+  //3.3 saving new array as new array
+  saveNotes(notesToKeep);
+  console.log("Title removed");
 };
 
 //2. Set up more properties to be able to export
