@@ -10,10 +10,21 @@ const addNote = function (title, body) {
   const notes = loadNotes();
   //10. we set property&value pair and push them.
   //Till now, we have loaded the data and added something in array.
-  notes.push({
-    title: title,
-    body: body,
+  //13. what if we try to add a title which is already existing? how to prevent duplicating?
+  const duplicateNotes = notes.filter(function (note) {
+    return note.title === title;
   });
+  if (duplicateNotes.length === 0) {
+    notes.push({
+      title: title,
+      body: body,
+    });
+    saveNotes(notes);
+    console.log("New note added!");
+  } else {
+    console.log("Note title taken");
+  }
+
   //12. call saveNotes function.
   // Run command line: node app.js add --title="List" --body="Pants" and another examples. we will see it will add new notes.
   // So this proves that both of the cases for load notes are working the first time around when there was no file,
@@ -21,7 +32,6 @@ const addNote = function (title, body) {
   //giving us a barebones way to actually create that file the next time we ran it.
   //This didn't throw an error. It correctly parsed the existing data.
   //It then added on to that existing data and saved it.
-  saveNotes(notes);
 };
 //11. After loading and adding the data, we need to save it. for this, we can create a function.
 const saveNotes = function (notes) {
