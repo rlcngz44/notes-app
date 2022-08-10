@@ -38,7 +38,6 @@ const saveNotes = function (notes) {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync("notes.json", dataJSON);
 };
-
 //5. Create a function to load existing notes.
 const loadNotes = function () {
   //9. Use try&catch statement for error handling
@@ -54,8 +53,16 @@ const loadNotes = function () {
   }
 };
 
+//2.2 Create a removeNote function
+const removeNote = function (title) {
+  //2.4 Have removeNote log the title of the note to be removed
+  console.log("Removing: ", title);
+};
+
 //2. Set up more properties to be able to export
 module.exports = {
   getNotes: getNotes,
   addNote: addNote,
+  //2.2 Export removeNote function
+  removeNote: removeNote,
 };
