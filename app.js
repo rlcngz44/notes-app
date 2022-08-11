@@ -48,7 +48,7 @@ yargs.command({
   command: "list",
   describe: "list all notes",
   handler() {
-    console.log("Listing the notes!");
+    notes.listNotes();
   },
 });
 
