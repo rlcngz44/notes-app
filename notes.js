@@ -2,10 +2,6 @@
 const chalk = require("chalk");
 const fs = require("fs");
 
-const getNotes = () => {
-  return "Your notes ...";
-};
-
 //1. This function will be responsible for adding notes.
 const addNote = (title, body) => {
   const notes = loadNotes();
@@ -80,12 +76,22 @@ const listNotes = () => {
   notes.forEach((note) => console.log(note.title));
 };
 
+const readNote = (title) => {
+  const notes = loadNotes()
+  const note = notes.find((note) => note.title === title)
+  if(note){
+    console.log(chalk.inverse(note.title))
+    console.log(note.body)
+  } else {
+    console.log(chalk.inverse.red("Note not found!"))
+  }
+}
 //2. Set up more properties to be able to export
 module.exports = {
-  getNotes: getNotes,
   addNote: addNote,
   //2.2 Export removeNote function
   removeNote: removeNote,
   //4.1 Export listNotes function
   listNotes: listNotes,
+  readNote : readNote
 };
